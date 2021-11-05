@@ -1,6 +1,14 @@
-# ScripboxAssignment
+# Hack Ideas
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
+This web application lets employees of an organisation to add/manage challenges for internal hackathons which they organise every month.
+The application have following features,
+* Users can to enter into application with 'employee id'(password is not necessary).
+* users can add a new challenges/ideas.
+* Challenge will have a title, description and tags
+* Users can upvote a challenge
+* Show the list of all challenges on home page
+* Users can sort challenges with votes count, creation date
 
 ## Development server
 
