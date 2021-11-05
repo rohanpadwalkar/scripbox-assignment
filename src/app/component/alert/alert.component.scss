@@ -1,0 +1,241 @@
+.alert-background {
+    height: auto;
+    width: 320px;
+    position: fixed;
+    box-shadow: 0px 7px 13px #00000029;
+    font-size: 14px;
+}
+
+.alert {
+    padding: 24px;
+    position: fixed;
+    width: 100%;
+    max-width: 429px;
+    bottom: 79px;
+    left: 220px;
+    z-index: 99999;
+    border-radius: 4px;
+    box-shadow: 0px 7px 13px #0000001d;
+
+    h3 {
+        color: #ffffff;
+    }
+
+    p {
+        line-height: 18px;
+        margin: 0;
+        font-weight: normal;
+    }
+
+    .cursor-pointer {
+        top: 14px;
+        right: 14px;
+    }
+}
+
+//alert-info
+.alert-info {
+    background: #483fac;
+
+    ::ng-deep i {
+        color: #fff;
+    }
+
+    a {
+        color: #fff;
+        border-bottom: 1px solid;
+        cursor: pointer;
+    }
+
+    p {
+        color: #fff;
+    }
+
+    &.light {
+        background: #ffffff;
+
+        ::ng-deep i {
+            color: #483fac;
+        }
+
+        h3 {
+            color: #483fac;
+        }
+
+        p {
+            color: #536476;
+        }
+
+        span {
+            ::ng-deep i {
+                color: #7f92a3;
+            }
+        }
+    }
+}
+
+.alert-warning {
+    background: #e5c049;
+
+    ::ng-deep i {
+        color: #fff;
+    }
+
+    a {
+        color: #fff;
+        border-bottom: 1px solid;
+        cursor: pointer;
+    }
+
+    p {
+        color: #fff;
+    }
+
+    &.light {
+        background: #ffffff;
+
+        ::ng-deep i {
+            color: #ffc409;
+        }
+
+        h3 {
+            color: #e5c049;
+        }
+
+        p {
+            color: #536476;
+        }
+
+        span {
+            ::ng-deep i {
+                color: #7f92a3;
+            }
+        }
+    }
+}
+
+.alert-error {
+    background: #eb445a;
+
+    ::ng-deep i {
+        color: #fff;
+    }
+
+    a {
+        color: #fff;
+        border-bottom: 1px solid;
+        cursor: pointer;
+    }
+
+    p {
+        color: #fff;
+    }
+
+    &.light {
+        background: #ffffff;
+
+        ::ng-deep i {
+            color: #eb445a;
+        }
+
+        h3 {
+            color: #eb445a;
+        }
+
+        p {
+            color: #536476;
+        }
+
+        span {
+            ::ng-deep i {
+                color: #7f92a3;
+            }
+        }
+    }
+}
+
+.alert-success {
+    background: #2dd36f;
+
+    ::ng-deep i {
+        color: #ffffff;
+    }
+
+    a {
+        color: #ffffff;
+        border-bottom: 1px solid;
+        cursor: pointer;
+    }
+
+    p {
+        color: #ffffff;
+    }
+
+    &.light {
+        background: #ffffff;
+
+        ::ng-deep i {
+            color: #2dd36f;
+        }
+
+        h3 {
+            color: #2dd36f;
+        }
+
+        p {
+            color: #536476;
+        }
+
+        span {
+            ::ng-deep i {
+                color: #7f92a3;
+            }
+        }
+    }
+}
+
+.alert-left-top {
+    top: 60px;
+    left: 220px;
+    right: auto;
+    bottom: auto;
+}
+
+.alert-left-bottom {
+    bottom: 79px;
+    left: 220px;
+    top: auto;
+    right: auto;
+}
+
+.alert-right-top {
+    top: 60px;
+    left: auto;
+    right: 20px;
+    bottom: auto;
+}
+
+.alert-right-bottom {
+    top: auto;
+    left: auto;
+    right: 20px;
+    bottom: 79px;
+}
+
+.alert-center-top {
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    bottom: auto;
+    margin-left: 100px;
+}
+
+.alert-center-bottom {
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    bottom: 79px;
+    margin-left: 100px;
+}
