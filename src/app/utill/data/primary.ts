@@ -10,6 +10,9 @@ export const TAGS = ['feature', 'tech'];
 
 export const CHALLENGES = [
     {
+        id: 1,
+        upVotes: 0,
+        voterId: [],
         title: 'Lorem Ipsum is simply dummy text of the printing ',
         description: 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
         tags: ['feature', 'tech'],
@@ -21,6 +24,9 @@ export const CHALLENGES = [
         }
     },
     {
+        id: 2,
+        upVotes: 0,
+        voterId: [],
         title: 'Why do we use it?',
         description: 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
         tags: ['feature', 'tech'],
@@ -32,6 +38,9 @@ export const CHALLENGES = [
         }
     },
     {
+        id: 3,
+        upVotes: 0,
+        voterId: [],
         title: 'Where can I get some?',
         description: 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
         tags: ['feature', 'tech'],

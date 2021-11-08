@@ -35,9 +35,12 @@ export class StorageService {
     return delete this.storage[key];
   }
 
-
+  clearAll() {
+    localStorage.clear();
+  }
 
   resetData() {
+    this.clearAll();
     this.set(StorageKeys.USERS, USERS, true);
     this.set(StorageKeys.TAGS, TAGS, true);
     this.set(StorageKeys.CHALLENGES, CHALLENGES, true);
