@@ -6,7 +6,7 @@ export const USERS = [
     }
 ];
 
-export const TAGS = ['feature', 'tech'];
+export const TAGS = ['feature', 'tech', 'business', 'company', 'marketing', 'robotics', 'blog', 'health', 'ai', 'ar'];
 
 export const CHALLENGES = [
     {

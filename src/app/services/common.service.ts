@@ -14,6 +14,11 @@ export class CommonService {
     return of(user);
   }
 
+  getUserEmployees(): Observable<any> {
+    const user: any[] = this.storage.get(StorageKeys.USERS);
+    return of(user);
+  }
+
   saveChallenge(data) {
     data = {
       createdOn: new Date(),
@@ -25,6 +30,12 @@ export class CommonService {
     const challengeList: any[] = this.storage.get(StorageKeys.CHALLENGES) || [];
     challengeList.push(data);
     this.storage.set(StorageKeys.CHALLENGES, challengeList, true);
+  }
+
+  saveUser(data) {
+    const userList: any[] = this.storage.get(StorageKeys.USERS) || [];
+    userList.push(data);
+    this.storage.set(StorageKeys.USERS, userList, true);
   }
 
   getChallengeList(): Observable<any> {
@@ -70,6 +81,12 @@ export class CommonService {
   getTags(): Observable<any> {
     const challengeList: any[] = this.storage.get(StorageKeys.TAGS) || [];
     return of(challengeList);
+  }
+
+  logOut(): Observable<any> {
+    this.storage.remove(StorageKeys.IS_LOGGED_IN);
+    this.storage.remove(StorageKeys.USER_DETAILS);
+    return of(true);
   }
 
 }

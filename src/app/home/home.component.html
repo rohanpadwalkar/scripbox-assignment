@@ -2,8 +2,9 @@
     <div class="row mx-auto">
         <div class="col-md-10">
             <div class="input-group mb-3 ">
-                <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username"
-                    aria-describedby="basic-addon2">
+                <input type="text" class="form-control" [(ngModel)]="searchString" placeholder="Search"
+                    aria-label="Recipient's username" aria-describedby="basic-addon2"
+                    (keyup)="searchChange()">
                 <div class="input-group-append">
 
                     <span class="input-group-text" id="basic-addon2">
@@ -21,16 +22,22 @@
 
     </div>
     <div class="row mx-auto">
-        <div class="col-md-10 mb-2">
+        <div class="col-md-9 mb-2">
             Sort By:
-            <span class="badge  me-2 cursor-pointer" (click)="changeSortOption(index)" [ngClass]="!option?.selected ? 'bg-secondary': 'bg-success'"
+            <span class="badge  me-2 cursor-pointer" (click)="changeSortOption(index)"
+                [ngClass]="!option?.selected ? 'bg-secondary': 'bg-success'"
                 *ngFor="let option of sortByOptions; let index =  index">
                 {{option?.label}}
             </span>
         </div>
+        <div class="col-md-3">
+            <a [routerLink]="['/users']" routerLinkActive="router-link-active"> manage employees</a>
+            <a class="float-end cursor-pointer" (click)="logOut()"> Log out</a>
+        </div>
     </div>
     <div class="row">
-        <div class="col-md-4" *ngFor="let challenge of challengeList">
+        <div *ngFor="let challenge of challengeList | arrayFilter : searchString"
+            [ngClass]="selectedChallenge?.id == challenge?.id ? 'col-md-12' : 'col-md-4' ">
             <div class="card p-3 mb-2">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
@@ -47,12 +54,16 @@
                     </div> -->
                 </div>
                 <div class="mt-5">
-                    <h3 class="heading">
+                    <h3 class="heading cursor-pointer" (click)="selectedChallenge = challenge">
                         {{challenge?.title}}
                     </h3>
                     <div class="row">
                         <div class="badge">
                             <span *ngFor="let tag of challenge?.tags">{{tag}}</span>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="selectedChallenge?.id == challenge?.id">
+                        <div class="col-md-12 mt-4" [innerHtml]="challenge?.description">
                         </div>
                     </div>
 
@@ -63,7 +74,7 @@
                                     [ngClass]="{'btn-success': challenge?.hasUpvoted, 'btn-secondary': !challenge?.hasUpvoted}">
                                     <i class="bi bi-hand-thumbs-up"></i>
                                 </button>
-                                <small>{{challenge?.voterId?.length}} Upvotes</small>
+                                <small class="ms-2 mt-2">{{challenge?.voterId?.length}} Upvotes</small>
                             </div>
                         </div>
                     </div>
@@ -110,7 +121,7 @@
             <div class="modal-footer">
                 <button type="button" #closeBtn class="btn btn-secondary" data-bs-dismiss="modal"
                     (click)="close()">Close</button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" [disabled]="challengeForm?.invalid" class="btn btn-primary">Save</button>
             </div>
         </form>
     </div>

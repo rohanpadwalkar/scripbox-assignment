@@ -1,9 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { CommonService } from '../services/common.service';
-import { StorageKeys, StorageService } from '../services/storage.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,6 +13,8 @@ export class HomeComponent implements OnInit {
   challengeList: any[] = [];
   tags: any[] = [];
   challengeForm: FormGroup;
+  searchString: string;
+  selectedChallenge: any;
   sortByOptions = [{ label: 'Votes', key: 'upvote' }, { label: 'Latest: by date', key: 'createdOn' }];
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -45,7 +46,7 @@ export class HomeComponent implements OnInit {
     ]
   };
   @ViewChild('closeBtn') closeBtnref: ElementRef;
-  constructor(private commonService: CommonService, private fb: FormBuilder) { }
+  constructor(private commonService: CommonService, private fb: FormBuilder, private route: Router) { }
 
   ngOnInit(): void {
     this.challengeForm = this.fb.group({
@@ -64,6 +65,28 @@ export class HomeComponent implements OnInit {
 
   changeSortOption(index) {
     this.sortByOptions.forEach((obj: any, ind) => obj.selected = index === ind ? !obj?.selected : false);
+    this.applySort();
+  }
+
+  searchChange() {
+    debugger
+    this.selectedChallenge = null;
+  }
+
+  applySort() {
+    this.selectedChallenge = null;
+    const selectedSort = this.sortByOptions.find((opt: any) => opt.selected);
+    if (selectedSort) {
+      this.challengeList = this.challengeList.sort((a: any, b: any) => {
+        if (selectedSort?.key === 'upvote') {
+          return b?.voterId?.length - a?.voterId?.length
+        } else {
+          return new Date(b.createdOn).getTime() - new Date(a.createdOn).getTime()
+        }
+
+      })
+    }
+
   }
 
   getCurrentUserDetails() {
@@ -74,13 +97,16 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  getChallenges() {
+  getChallenges(applySort = true) {
     this.commonService.getChallengeList().subscribe(res => {
       if (res) {
         this.challengeList = res;
         this.challengeList.forEach(challengeObj => {
           challengeObj.hasUpvoted = challengeObj?.voterId.includes(this.userDetails.employeeId)
         })
+        if (applySort) {
+          this.applySort();
+        }
       }
     })
   }
@@ -95,8 +121,7 @@ export class HomeComponent implements OnInit {
 
   upVote(id) {
     this.commonService.upVoteChallenge(id).subscribe(res => {
-      debugger;
-      this.getChallenges();
+      this.getChallenges(false);
     })
   }
 
@@ -112,6 +137,14 @@ export class HomeComponent implements OnInit {
       this.getChallenges();
 
     }
+  }
+
+  logOut() {
+    this.commonService.logOut().subscribe(res => {
+      if (res) {
+        this.route.navigate(['login']);
+      }
+    })
   }
 
 }

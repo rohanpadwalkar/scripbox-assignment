@@ -13,13 +13,17 @@ import { TimeagoModule } from 'ngx-timeago';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { HttpClientModule } from '@angular/common/http';
+import { ArrayFilterPipe } from './pipe/array-filter.pipe';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     HomeComponent,
-    AlertComponent
+    AlertComponent,
+    ArrayFilterPipe,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
