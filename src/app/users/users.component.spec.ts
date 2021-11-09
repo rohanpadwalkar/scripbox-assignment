@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { UsersComponent } from './users.component';
 
@@ -8,9 +10,10 @@ describe('UsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
+      declarations: [UsersComponent],
+      imports: [FormsModule, ReactiveFormsModule, NgSelectModule]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

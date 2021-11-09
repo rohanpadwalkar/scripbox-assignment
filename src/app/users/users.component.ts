@@ -10,18 +10,19 @@ import { CommonService } from '../services/common.service';
 export class UsersComponent implements OnInit {
 
   users: any[];
-  userForm: FormGroup;
+  // userForm: FormGroup;
   @ViewChild('closeBtn') closeBtnref: ElementRef;
   genderOptions = [{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }];
+  userForm = this.fb.group({
+    employeeId: ['', Validators.required],
+    name: ['', Validators.required],
+    gender: [null, Validators.required]
+  })
+
   constructor(private commonService: CommonService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getUsers();
-    this.userForm = this.fb.group({
-      employeeId: ['', Validators.required],
-      name: ['', Validators.required],
-      gender: [null, Validators.required]
-    })
   }
 
   getUsers() {

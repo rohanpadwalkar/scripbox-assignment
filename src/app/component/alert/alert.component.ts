@@ -15,8 +15,8 @@ export class AlertComponent implements OnInit, OnDestroy {
 
   alerts: Alert[] = [];
   alert: Alert;
-  alertSubscription: Subscription;
-  alertSubscriptionProcess: Subscription;
+  alertSubscription: Subscription = new Subscription();
+  alertSubscriptionProcess: Subscription = new Subscription();;
 
   constructor(private router: Router,
     private notificationService: AlertService) { }

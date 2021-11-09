@@ -69,7 +69,6 @@ export class HomeComponent implements OnInit {
   }
 
   searchChange() {
-    debugger
     this.selectedChallenge = null;
   }
 
@@ -102,7 +101,7 @@ export class HomeComponent implements OnInit {
       if (res) {
         this.challengeList = res;
         this.challengeList.forEach(challengeObj => {
-          challengeObj.hasUpvoted = challengeObj?.voterId.includes(this.userDetails.employeeId)
+          challengeObj.hasUpvoted = challengeObj?.voterId.includes(this.userDetails?.employeeId)
         })
         if (applySort) {
           this.applySort();
